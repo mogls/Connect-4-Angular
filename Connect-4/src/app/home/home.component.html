@@ -1,0 +1,11 @@
+<h2>Connect-4</h2>
+
+<form class="form-grid">
+  <h3>Player 1 Name:</h3>
+  <input type="text" #p1 />
+
+  <h3>Player 2 Name:</h3>
+  <input type="text" #p2 />
+
+  <button (click)="play(p1.value, p2.value)" type="submit">Play</button>
+</form>
