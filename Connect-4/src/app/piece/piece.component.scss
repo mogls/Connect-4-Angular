@@ -1,7 +1,27 @@
 .p1 {
     color: red;
+    fill: red;
 }
 
 .p2 {
     color: blue;
+    fill: blue;
+}
+
+.falling-piece {
+    animation-name: falling;
+    animation-duration: 8s;
+
+    @keyframes falling {
+
+        0% {
+
+            top: -10vh
+        }
+
+        100% {
+
+            top: 90vh
+        }
+    }
 }

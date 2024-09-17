@@ -3,7 +3,7 @@ import { BoardStateService } from '../board-state.service';
 import { CommonModule } from '@angular/common';
 import { GameStateService } from '../game-state.service';
 import { PieceComponent } from '../piece/piece.component';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Router } from '@angular/router';
 
 @Component({
   selector: 'app-gameboard',
@@ -15,25 +15,31 @@ import { RouterModule } from '@angular/router';
 export class GameboardComponent {
   constructor(
     public boardState: BoardStateService,
-    public gameState: GameStateService
+    public gameState: GameStateService,
+    private router: Router
   ) {}
 
-  placePiece(index: number): void {
+  pieceBeingPlaced = false;
+
+  async placePiece(index: number) {
+    this.pieceBeingPlaced = true;
     let player = this.gameState.currentPlayer;
-    try {
-      this.boardState.placePiece(index, player);
-    } catch (e) {
-      alert("You can't place a piece there. Place it somewhere else!");
-      console.log('Error: ', e);
-      return;
-    }
 
-    if (this.gameState.checkForWin()) {
-      this.gameState.onWin();
-    }
+    const success = await this.boardState.placePiece(index, player);
 
-    this.gameState.changeCurrentPlayer();
+    if (success) {
+      if (this.gameState.checkForWin()) {
+        this.gameState.onWin();
+      } else {
+        this.gameState.changeCurrentPlayer();
+      }
+    }
+    this.pieceBeingPlaced = false;
   }
 
-  removePiece(index: number): void {}
+  return() {
+    this.boardState.clearBoard();
+
+    this.router.navigate(['/']);
+  }
 }

@@ -26,3 +26,17 @@
     margin-left: 2rem;
 
 }
+
+.current-player {
+    display: flex;
+}
+
+.column {
+    display: flex;
+    align-content: center;
+    align-items: end;
+}
+
+.set-button {
+    width: 100%;
+}

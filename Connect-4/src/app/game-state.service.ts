@@ -160,6 +160,11 @@ export class GameStateService {
   }
 
   onWin() {
-    alert('The winner is: ' + this.currentPlayerName());
+    const playerName = this.currentPlayerName();
+    if (playerName) {
+      alert('The winner is: ' + this.currentPlayerName());
+    } else {
+      alert('The winner is: Player ' + this.currentPlayer);
+    }
   }
 }

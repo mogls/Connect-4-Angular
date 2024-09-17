@@ -28,14 +28,35 @@ export class BoardStateService {
     return displayBoard;
   }
 
-  placePiece(column: number, player: number) {
+  async placePiece(column: number, player: number): Promise<boolean> {
     const row: number = this.gameBoard[column].indexOf(0);
-
+  
     if (row == -1) {
-      throw new Error('Exceeded game board height');
+      return false;
     }
-
-    this.gameBoard[column][row] = player;
-
+  
+    for (let i = 5; i >= row; i--) {
+      await new Promise<void>((resolve) => {
+        setTimeout(() => {
+          this.gameBoard[column][i] = player;
+          if (i < 5) {
+            this.gameBoard[column][i + 1] = 0;
+          }
+          resolve();
+        }, 90);
+      });
+    }
+  
+    return true;
   }
+  
+
+  clearBoard() {
+    for (let column = 0; column < this.columns; column++) {
+      for (let row = 0; row < this.rows; row++) {
+        this.gameBoard[column][row] = 0;
+      }
+    }
+  }
+
 }
