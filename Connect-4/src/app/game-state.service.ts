@@ -8,6 +8,7 @@ export class GameStateService {
   currentPlayer: number = 1;
   playerOneName: string = '';
   playerTwoName: string = '';
+  turn: number = 0;
 
   constructor(private boardState: BoardStateService) {}
 
@@ -166,5 +167,20 @@ export class GameStateService {
     } else {
       alert('The winner is: Player ' + this.currentPlayer);
     }
+  }
+
+  nextTurn(): void {
+    this.turn++;
+    if (this.turn === 42) {
+      alert('The game is a DRAW.');
+      return;
+    }
+
+    if (this.checkForWin()) {
+      this.onWin();
+      return;
+    }
+
+    this.changeCurrentPlayer();
   }
 }

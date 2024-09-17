@@ -19,6 +19,7 @@ export class GameboardComponent {
     private router: Router
   ) {}
 
+  hoveredIndex: number | null = null;
   pieceBeingPlaced = false;
 
   async placePiece(index: number) {
@@ -28,11 +29,7 @@ export class GameboardComponent {
     const success = await this.boardState.placePiece(index, player);
 
     if (success) {
-      if (this.gameState.checkForWin()) {
-        this.gameState.onWin();
-      } else {
-        this.gameState.changeCurrentPlayer();
-      }
+      this.gameState.nextTurn();
     }
     this.pieceBeingPlaced = false;
   }
@@ -42,4 +39,7 @@ export class GameboardComponent {
 
     this.router.navigate(['/']);
   }
+
+
+
 }

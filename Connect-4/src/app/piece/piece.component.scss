@@ -1,27 +1,16 @@
 .p1 {
-    color: red;
-    fill: red;
+    color: red !important;
+    fill: red !important;
 }
 
 .p2 {
-    color: blue;
-    fill: blue;
+    color: blue !important;
+    fill: blue !important;
 }
 
-.falling-piece {
-    animation-name: falling;
-    animation-duration: 8s;
-
-    @keyframes falling {
-
-        0% {
-
-            top: -10vh
-        }
-
-        100% {
-
-            top: 90vh
-        }
+@media (preferes-color-scheme: dark) {
+    .dark-circle {
+        color: #ddd;
+        fill: #ddd;
     }
 }

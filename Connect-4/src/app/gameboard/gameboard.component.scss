@@ -32,9 +32,13 @@
 }
 
 .column {
-    display: flex;
-    align-content: center;
-    align-items: end;
+    transition: background-color 0.3s;
+
+    &.highlight {
+        background-color: yellow; // Change to any effect you want
+        color: white;
+    }
+
 }
 
 .set-button {

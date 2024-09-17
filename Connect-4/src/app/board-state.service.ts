@@ -32,6 +32,7 @@ export class BoardStateService {
     const row: number = this.gameBoard[column].indexOf(0);
   
     if (row == -1) {
+      alert("You can't place a Piece there. It's out of the board!")
       return false;
     }
   
@@ -46,6 +47,7 @@ export class BoardStateService {
         }, 90);
       });
     }
+  
   
     return true;
   }
