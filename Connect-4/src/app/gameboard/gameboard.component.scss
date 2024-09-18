@@ -1,9 +1,6 @@
 .board {
     display: grid;
     grid-template-columns: repeat(7, min-content);
-    align-content: center;
-    align-items: center;
-
 }
 
 .container {
@@ -32,7 +29,7 @@
 }
 
 .column {
-    transition: background-color 0.3s;
+    transition: background-color 0.8s;
 
     &.highlight {
         background-color: yellow; // Change to any effect you want

@@ -36,9 +36,34 @@ $Connect-4-theme: mat.define-theme((
 // @include mat.color-variants-backwards-compatibility($Connect-4-theme);
 /* You can add global styles to this file, and also import other style files */
 
+@mixin animateBackground($duration) {
+  background: linear-gradient(135deg, red, blue);
+  background-size: 200% 200%;
+  animation: moveBackground $duration ease infinite;
+}
+
+@keyframes moveBackground {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+
 html,
 body {
     height: 100%;
+}
+
+html {
+  // background: linear-gradient(to left, red 50%, blue 50%) right;
+  @include animateBackground(8s);
+
 }
 
 body {
@@ -51,5 +76,5 @@ body {
     color: #ddd;
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
