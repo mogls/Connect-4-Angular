@@ -5,6 +5,9 @@
       [ngClass]="{ highlight: hoveredIndex === colIndex }"
       *ngFor="let col of this.boardState.flipGameBoard(); let colIndex = index"
       id="{{ colIndex }}"
+      (click)="placePiece(colIndex)"
+      (mouseenter)="hoveredIndex = colIndex"
+      (mouseleave)="hoveredIndex = null"
     >
       <div
         class="row"
@@ -13,7 +16,7 @@
       >
         <app-piece [player]="num"></app-piece>
       </div>
-      <button
+      <!-- <button
         class="set-button"
         [disabled]="this.pieceBeingPlaced"
         (click)="placePiece(colIndex)"
@@ -21,7 +24,7 @@
         (mouseleave)="hoveredIndex = null"
       >
         Set
-      </button>
+      </button> -->
     </div>
   </div>
   <div class="current-player">

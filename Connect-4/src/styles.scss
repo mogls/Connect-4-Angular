@@ -1,4 +1,3 @@
-
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
 @use '@angular/material' as mat;
@@ -10,16 +9,12 @@
 @include mat.core();
 
 // Define the theme object.
-$Connect-4-theme: mat.define-theme((
-  color: (
-    theme-type: light,
-    primary: mat.$azure-palette,
-    tertiary: mat.$blue-palette,
-  ),
-  density: (
-    scale: 0,
-  )
-));
+$Connect-4-theme: mat.define-theme((color: (theme-type: light,
+        primary: mat.$azure-palette,
+        tertiary: mat.$blue-palette,
+      ),
+      density: (scale: 0,
+      )));
 
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
@@ -42,13 +37,21 @@ $Connect-4-theme: mat.define-theme((
   animation: moveBackground $duration ease infinite;
 }
 
+@mixin animateDarkBackground($duration) {
+  background: linear-gradient(135deg, rgb(123, 0, 0), rgb(0, 0, 122));
+  background-size: 200% 200%;
+  animation: moveBackground $duration ease infinite;
+}
+
 @keyframes moveBackground {
   0% {
     background-position: 0% 50%;
   }
+
   50% {
     background-position: 100% 50%;
   }
+
   100% {
     background-position: 0% 50%;
   }
@@ -57,24 +60,17 @@ $Connect-4-theme: mat.define-theme((
 
 html,
 body {
-    height: 100%;
-}
-
-html {
-  // background: linear-gradient(to left, red 50%, blue 50%) right;
-  @include animateBackground(8s);
-
+  height: 100%;
 }
 
 body {
-    margin: 0;
-    font-family: Roboto, "Helvetica Neue", sans-serif;
+  @include animateBackground(8s);
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
 .dark-theme {
-    background-color: #121212;
-    color: #ddd;
+  @include animateDarkBackground(8s);
+  // color: #ddd;
 }
-
-
 

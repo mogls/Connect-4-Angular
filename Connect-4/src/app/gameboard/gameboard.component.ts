@@ -23,6 +23,10 @@ export class GameboardComponent {
   pieceBeingPlaced = false;
 
   async placePiece(index: number) {
+    if (this.pieceBeingPlaced) {
+      return;
+    }
+    
     this.pieceBeingPlaced = true;
     let player = this.gameState.currentPlayer;
 

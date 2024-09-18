@@ -1,3 +1,25 @@
+@mixin animateBackground($duration) {
+    background: linear-gradient(45deg, #990199, #990199);
+    background-size: 200% 200%;
+    animation: moveBackground $duration ease infinite;
+}
+
+@keyframes moveBackground {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 50% 100%;
+        
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+
 .board {
     display: grid;
     grid-template-columns: repeat(7, min-content);
@@ -29,11 +51,10 @@
 }
 
 .column {
-    transition: background-color 0.8s;
+    transition: background-position 0.8s;
 
     &.highlight {
-        background-color: yellow; // Change to any effect you want
-        color: white;
+        @include animateBackground(8s)
     }
 
 }
@@ -41,3 +62,4 @@
 .set-button {
     width: 100%;
 }
+

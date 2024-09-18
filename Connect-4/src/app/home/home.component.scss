@@ -1,7 +1,9 @@
 .form-grid {
-    display: grid;
+    display: inline-grid;
     grid-template-columns: repeat(2, max-content);
-    margin-left: 2vh;
+    width: max-content;
+    margin-top: 10vh;
+
 }
 
 .p1-input {
@@ -26,24 +28,67 @@
 }
 
 .play-button {
-    // margin-left: 5%;
+    margin-top: 2vh;
+    width: 10vw;
 }
 
 .main-home-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display: inline-block;
     align-content: center;
+    text-align: center;
+    width: 100vw;
+
 }
 
 .title {
+    padding-top: 10vh;
     animation: title-animation 8s infinite;
-    // @include animateBackground(8s);
+    margin-left: auto;
+    transform: translateX(1.3vw);
 
 }
 
+label {
+    font-size: x-large;
+    animation: label-animation 8s infinite;
+    margin-bottom: 1vh;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.dark-mode-button {
+    margin-left: auto;
+    transform: translate(-5vw, -5vh);
+}
+
+@keyframes label-animation {
+    0% {
+        color: blue;
+    }
+
+    50% {
+        color: red;
+    }
+
+    100% {
+        color: blue;
+    }
+}
+
 @keyframes title-animation {
-    0% {color:blue;}
-    50% {color:red;}
-    100% {color:blue;}
+    0% {
+        color: blue;
+    }
+
+    50% {
+        color: red;
+    }
+
+    100% {
+        color: blue;
+    }
 }
