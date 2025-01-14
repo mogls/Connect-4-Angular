@@ -17,16 +17,18 @@ export class GameboardComponent {
     public boardState: BoardStateService,
     public gameState: GameStateService,
     private router: Router
-  ) {}
+  ) {
+  }
 
   hoveredIndex: number | null = null;
   pieceBeingPlaced = false;
+  
 
   async placePiece(index: number) {
     if (this.pieceBeingPlaced) {
       return;
     }
-    
+
     this.pieceBeingPlaced = true;
     let player = this.gameState.currentPlayer;
 
@@ -43,7 +45,4 @@ export class GameboardComponent {
 
     this.router.navigate(['/']);
   }
-
-
-
 }

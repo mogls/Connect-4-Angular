@@ -8,6 +8,19 @@
     fill: blue !important;
 }
 
+.svg-container {
+    height: 100px;
+    width: 100px;
+}
+
+.circle {
+    r: 45px;
+    cx: 45px;
+    cy: 45px;
+}
+
+
+
 @media (preferes-color-scheme: dark) {
     .dark-circle {
         color: #ddd;

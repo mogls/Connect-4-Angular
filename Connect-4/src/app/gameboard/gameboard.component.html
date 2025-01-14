@@ -1,36 +1,31 @@
 <div class="container">
-  <div class="board">
-    <div
-      class="column"
-      [ngClass]="{ highlight: hoveredIndex === colIndex }"
-      *ngFor="let col of this.boardState.flipGameBoard(); let colIndex = index"
-      id="{{ colIndex }}"
-      (click)="placePiece(colIndex)"
-      (mouseenter)="hoveredIndex = colIndex"
-      (mouseleave)="hoveredIndex = null"
-    >
+  <div class="game-area">
+    <div class="board">
       <div
-        class="row"
-        *ngFor="let num of col; let index = index"
-        id="{{ index }}"
-      >
-        <app-piece [player]="num"></app-piece>
-      </div>
-      <!-- <button
-        class="set-button"
-        [disabled]="this.pieceBeingPlaced"
+        class="column"
+        [ngClass]="{ highlight: hoveredIndex === colIndex }"
+        *ngFor="
+          let col of this.boardState.displayBoard;
+          let colIndex = index
+        "
+        id="{{ colIndex }}"
         (click)="placePiece(colIndex)"
         (mouseenter)="hoveredIndex = colIndex"
         (mouseleave)="hoveredIndex = null"
       >
-        Set
-      </button> -->
+        <div
+          class="row"
+          *ngFor="let num of col; let index = index"
+          id="{{ index }}"
+        >
+          <app-piece [player]="num"></app-piece>
+        </div>
+      </div>
+    </div>
+    <div class="current-player">
+      <p class="p{{ this.gameState.currentPlayer }}">Current player:</p>
+      <app-piece [player]="this.gameState.currentPlayer"></app-piece>
     </div>
   </div>
-  <div class="current-player">
-    <p class="p{{ this.gameState.currentPlayer }}">Current player:</p>
-    <app-piece [player]="this.gameState.currentPlayer"></app-piece>
-  </div>
+  <button class="return-button" (click)="return()">Return</button>
 </div>
-
-<button (click)="return()">Return</button>

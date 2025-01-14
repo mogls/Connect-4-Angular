@@ -1,17 +1,17 @@
-@mixin animateBackground($duration) {
+@mixin animateHighlight($duration) {
     background: linear-gradient(45deg, #990199, #990199);
     background-size: 200% 200%;
-    animation: moveBackground $duration ease infinite;
+    animation: moveHighlight $duration ease infinite;
 }
 
-@keyframes moveBackground {
+@keyframes moveHighlight {
     0% {
         background-position: 0% 50%;
     }
 
     50% {
         background-position: 50% 100%;
-        
+
     }
 
     100% {
@@ -19,17 +19,15 @@
     }
 }
 
+.game-area {
+    display: flex;
+}
 
 .board {
     display: grid;
     grid-template-columns: repeat(7, min-content);
 }
 
-.container {
-    display: flex;
-    padding-left: 2rem;
-    margin: 20px;
-}
 
 .row {
     margin-left: 0.6rem;
@@ -54,12 +52,40 @@
     transition: background-position 0.8s;
 
     &.highlight {
-        @include animateBackground(8s)
+        @include animateHighlight(8s)
     }
 
 }
 
-.set-button {
-    width: 100%;
+.container {
+    display: flex;
+    flex-direction: column; // Ensures the elements stack vertically
+    justify-content: center;
+    align-items: center; // Centers the board and button horizontally
+    padding: 1rem;
 }
 
+.return-button {
+    margin-top: 1rem; // Adjust this value to move the button closer or farther
+    align-self: center; // Ensure the button is centered within the container
+    @include animateHighlight(8s);
+    border-color: #990199;
+    width: 67%;
+    height: 50px;
+}
+
+
+@media only screen and (max-width: 600px) {
+    .container {
+        transform: scale(0.5);
+        transform-origin: top center; // Keeps the scaling centered at the top
+        justify-content: center;
+        margin: 10px
+    }
+
+    .return-button {
+        width: 50%;
+        margin-left: 80%;
+    }
+
+}

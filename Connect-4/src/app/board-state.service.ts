@@ -8,6 +8,7 @@ export class BoardStateService {
   rows = 6;
   columns = 7;
   gameBoard: number[][] = [];
+  displayBoard: number[][] = [];
 
   constructor() {
     for (let column: number = 0; column < this.columns; column++) {
@@ -16,26 +17,21 @@ export class BoardStateService {
         this.gameBoard[column][row] = 0;
       }
     }
+    this.displayBoard = this.flipGameBoard();
   }
 
   flipGameBoard(): number[][] {
-    let gameBoardCopy: number[][] = this.gameBoard;
-    let displayBoard: number[][] = [];
-    for (let column = 0; column < this.columns; column++) {
-      displayBoard[column] = gameBoardCopy[column].reverse();
-    }
-
-    return displayBoard;
+    return [...this.gameBoard].map((column) => [...column].reverse());
   }
 
   async placePiece(column: number, player: number): Promise<boolean> {
     const row: number = this.gameBoard[column].indexOf(0);
-  
+
     if (row == -1) {
-      alert("You can't place a Piece there. It's out of the board!")
+      alert("You can't place a Piece there. It's out of the board!");
       return false;
     }
-  
+
     for (let i = 5; i >= row; i--) {
       await new Promise<void>((resolve) => {
         setTimeout(() => {
@@ -43,15 +39,14 @@ export class BoardStateService {
           if (i < 5) {
             this.gameBoard[column][i + 1] = 0;
           }
+          this.displayBoard = this.flipGameBoard();
           resolve();
         }, 90);
       });
     }
-  
-  
+
     return true;
   }
-  
 
   clearBoard() {
     for (let column = 0; column < this.columns; column++) {
@@ -59,6 +54,6 @@ export class BoardStateService {
         this.gameBoard[column][row] = 0;
       }
     }
+    this.displayBoard = this.flipGameBoard();
   }
-
 }

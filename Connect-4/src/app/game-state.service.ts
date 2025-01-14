@@ -162,23 +162,28 @@ export class GameStateService {
 
   onWin() {
     const playerName = this.currentPlayerName();
-    if (playerName) {
-      alert('The winner is: ' + this.currentPlayerName());
-    } else {
-      alert('The winner is: Player ' + this.currentPlayer);
-    }
+    setTimeout(() => {
+      if (playerName) {
+        alert('The winner is: ' + this.currentPlayerName());
+      } else {
+        alert('The winner is: Player ' + this.currentPlayer);
+      }
+    }, 100);
   }
 
   nextTurn(): void {
     this.turn++;
-    if (this.turn === 42) {
-      alert('The game is a DRAW.');
-      return;
-    }
 
     if (this.checkForWin()) {
       this.onWin();
       return;
+    }
+
+    if (this.turn === 42) {
+      setTimeout(() => {
+        alert('The game is a DRAW.');
+        return;
+      }, 100);
     }
 
     this.changeCurrentPlayer();
